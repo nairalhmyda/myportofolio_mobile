@@ -7,11 +7,17 @@ class MyHomePage extends StatelessWidget {
   final String nama = "Naira Al Humayda";
   final String kelas = "PBP E";
 
-  final List<ItemHomepage> items = [
-    ItemHomepage("Lihat Proyek", Icons.folder),
-    ItemHomepage("Tambah Proyek", Icons.add_circle),
-    ItemHomepage("Logout", Icons.logout),
-  ];
+  static const items = [
+  ItemHomepage(
+    'Lihat Proyek', Icons.folder, Color(0xFF1D4ED8), MenuAction.viewProjects,
+  ),
+  ItemHomepage(
+    'Tambah Proyek', Icons.add_circle, Color(0xFF166534), MenuAction.addProject,
+  ),
+  ItemHomepage(
+    'Logout', Icons.logout, Color(0xFFB91C1C), MenuAction.logout,
+  ),
+];
 
     @override
   Widget build(BuildContext context) {
@@ -116,11 +122,15 @@ class InfoCard extends StatelessWidget {
   }
 }
 
+enum MenuAction { viewProjects, addProject, logout }
+
 class ItemHomepage {
   final String name;
   final IconData icon;
+  final Color color;
+  final MenuAction action;
 
-  ItemHomepage(this.name, this.icon);
+  const ItemHomepage(this.name, this.icon, this.color, this.action);
 }
 
 class ItemCard extends StatelessWidget {
