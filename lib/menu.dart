@@ -1,24 +1,32 @@
 import 'package:flutter/material.dart';
+
 import 'screens/project_list_page.dart';
+import 'widgets/info_card.dart';
+import 'widgets/item_card.dart';
+import 'models/item_homepage.dart';
 
 class MyHomePage extends StatelessWidget {
-  MyHomePage({super.key});
+  const MyHomePage({super.key});
 
   final String npm = "2506532233";
   final String nama = "Naira Al Humayda";
   final String kelas = "PBP E";
 
   static const items = [
-  ItemHomepage(
-    'Lihat Proyek', Icons.folder, Color(0xFF1D4ED8), MenuAction.viewProjects,
-  ),
-  ItemHomepage(
-    'Tambah Proyek', Icons.add_circle, Color(0xFF166534), MenuAction.addProject,
-  ),
-  ItemHomepage(
-    'Logout', Icons.logout, Color(0xFFB91C1C), MenuAction.logout,
-  ),
-];
+    ItemHomepage(
+      'Lihat Proyek',
+      Icons.folder,
+      Color(0xFF1D4ED8),
+      MenuAction.viewProjects,
+    ),
+    ItemHomepage(
+      'Tambah Proyek',
+      Icons.add_circle,
+      Color(0xFF166534),
+      MenuAction.addProject,
+    ),
+    ItemHomepage('Logout', Icons.logout, Color(0xFFB91C1C), MenuAction.logout),
+  ];
 
   @override
   Widget build(BuildContext context) {
@@ -28,10 +36,7 @@ class MyHomePage extends StatelessWidget {
       appBar: AppBar(
         title: const Text(
           'MyPortfolio',
-          style: TextStyle(
-            color: Colors.white,
-            fontWeight: FontWeight.bold,
-          ),
+          style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
         ),
         backgroundColor: Theme.of(context).colorScheme.primary,
       ),
@@ -102,95 +107,6 @@ class MyHomePage extends StatelessWidget {
   }
 }
 
-class InfoCard extends StatelessWidget {
-  // Kartu informasi yang menampilkan judul (title) dan isi (content).
-  final String title;
-  final String content;
-
-  const InfoCard({super.key, required this.title, required this.content});
-
-  @override
-  Widget build(BuildContext context) {
-    return Card(
-      // Memberikan efek bayangan kartu elevasi 2 unit.
-      elevation: 2.0,
-      child: Container(
-        // Menyesuaikan lebar kartu dengan proporsi layar (dibagi 3.5).
-        width: MediaQuery.of(context).size.width / 3.5,
-        padding: const EdgeInsets.all(16.0),
-        // Menyusun teks title dan content secara vertikal.
-        child: Column(
-          children: [
-            Text(
-              title,
-              style: const TextStyle(fontWeight: FontWeight.bold),
-            ),
-            const SizedBox(height: 8.0),
-            Text(content),
-          ],
-        ),
-      ),
-    );
-  }
-}
-
-enum MenuAction { viewProjects, addProject, logout }
-
-class ItemHomepage {
-  final String name;
-  final IconData icon;
-  final Color color;
-  final MenuAction action;
-
-  const ItemHomepage(this.name, this.icon, this.color, this.action);
-}
-
-class ItemCard extends StatelessWidget {
-  final ItemHomepage item;
-  final VoidCallback onPressed;
-
-  const ItemCard(this.item, {super.key, required this.onPressed});
 
 
-  @override
-  Widget build(BuildContext context) {
-    return Material(
-      // Menggunakan warna sekunder dari skema tema aplikasi.
-      color: item.color,
-      borderRadius: BorderRadius.circular(12),
-      child: InkWell(
-        // Aksi ketika kartu ditekan oleh pengguna.
-        onTap: () {
-          // Menampilkan SnackBar dengan pesan interaktif.
-          ScaffoldMessenger.of(context)
-            ..hideCurrentSnackBar()
-            ..showSnackBar(
-              SnackBar(content: Text("Kamu telah menekan tombol ${item.name}!"))
-            );
-        },
-        child: Container(
-          padding: const EdgeInsets.all(8),
-          child: Center(
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Icon(
-                  item.icon,
-                  color: Colors.white,
-                  size: 30.0,
-                ),
-                const Padding(padding: EdgeInsets.all(3)),
-                Text(
-                  item.name,
-                  textAlign: TextAlign.center,
-                  style: const TextStyle(color: Colors.white),
-                ),
-              ],
-            ),
-          ),
-        ),
-      ),
-    );
-  }
-}
 

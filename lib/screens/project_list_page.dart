@@ -15,7 +15,8 @@ class PortfolioProject {
 const projects = [
   PortfolioProject(
     title: 'MyPortfolio Web',
-    description: 'Website untuk menampilkan proyek-proyek yang pernah aku buat.',
+    description:
+        'Website untuk menampilkan proyek-proyek yang pernah aku buat.',
     technologies: 'Django, HTML, CSS, JavaScript',
   ),
   PortfolioProject(
@@ -31,9 +32,7 @@ class ProjectListPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Daftar Proyek'),
-      ),
+      appBar: AppBar(title: const Text('Daftar Proyek')),
       body: ListView(
         padding: const EdgeInsets.all(16),
         children: [
