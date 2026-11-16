@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'screens/project_list_page.dart';
 
 class MyHomePage extends StatelessWidget {
   MyHomePage({super.key});
@@ -19,7 +20,7 @@ class MyHomePage extends StatelessWidget {
   ),
 ];
 
-    @override
+  @override
   Widget build(BuildContext context) {
     // Scaffold menyediakan struktur visual dasar halaman (AppBar, Body, SnackBar).
     return Scaffold(
@@ -77,7 +78,18 @@ class MyHomePage extends StatelessWidget {
                     // shrinkWrap agar ukuran kisi menyesuaikan tinggi konten anak.
                     shrinkWrap: true,
                     children: items.map((ItemHomepage item) {
-                      return ItemCard(item);
+                      return ItemCard(
+                        item,
+                        onPressed: () {
+                          if (item.action != MenuAction.viewProjects) return;
+
+                          Navigator.of(context).push(
+                            MaterialPageRoute<void>(
+                              builder: (_) => const ProjectListPage(),
+                            ),
+                          );
+                        },
+                      );
                     }).toList(),
                   ),
                 ],
@@ -135,14 +147,16 @@ class ItemHomepage {
 
 class ItemCard extends StatelessWidget {
   final ItemHomepage item;
+  final VoidCallback onPressed;
 
-  const ItemCard(this.item, {super.key});
+  const ItemCard(this.item, {super.key, required this.onPressed});
+
 
   @override
   Widget build(BuildContext context) {
     return Material(
       // Menggunakan warna sekunder dari skema tema aplikasi.
-      color: Theme.of(context).colorScheme.secondary,
+      color: item.color,
       borderRadius: BorderRadius.circular(12),
       child: InkWell(
         // Aksi ketika kartu ditekan oleh pengguna.
