@@ -24,6 +24,8 @@ class ItemCard extends StatelessWidget {
                 content: Text("Kamu telah menekan tombol ${item.name}!"),
               ),
             );
+
+          onPressed();
         },
         child: Container(
           padding: const EdgeInsets.all(8),
