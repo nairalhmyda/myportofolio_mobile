@@ -1,9 +1,10 @@
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 
-import 'screens/project_list_page.dart';
-import 'widgets/info_card.dart';
-import 'widgets/item_card.dart';
-import 'models/item_homepage.dart';
+import 'project_list_page.dart';
+import '../widgets/info_card.dart';
+import '../widgets/project_card.dart';
+import '../models/item_homepage.dart';
+import 'project_form.dart';
 
 class MyHomePage extends StatelessWidget {
   const MyHomePage({super.key});
@@ -86,13 +87,19 @@ class MyHomePage extends StatelessWidget {
                       return ItemCard(
                         item,
                         onPressed: () {
-                          if (item.action != MenuAction.viewProjects) return;
-
-                          Navigator.of(context).push(
-                            MaterialPageRoute<void>(
-                              builder: (_) => const ProjectListPage(),
-                            ),
-                          );
+                          if (item.action == MenuAction.viewProjects) {
+                            Navigator.of(context).push(
+                              MaterialPageRoute<void>(
+                                builder: (_) => const ProjectListPage(),
+                              ),
+                            );
+                          } else if (item.action == MenuAction.addProject) {
+                            Navigator.of(context).push(
+                              MaterialPageRoute<void>(
+                                builder: (_) => const ProjectFormPage(),
+                              ),
+                            );
+                          }
                         },
                       );
                     }).toList(),
@@ -106,7 +113,3 @@ class MyHomePage extends StatelessWidget {
     );
   }
 }
-
-
-
-

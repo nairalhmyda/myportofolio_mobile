@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 
 class PortfolioProject {
   final String title;
@@ -32,8 +32,7 @@ class ProjectListPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Daftar Proyek')),
+      appBar: AppBar(title: const Text('Daftar Proyek')),
       body: ListView(
         padding: const EdgeInsets.all(16),
         children: [
