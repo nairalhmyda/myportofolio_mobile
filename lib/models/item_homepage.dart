@@ -1,6 +1,6 @@
 import 'package:material_ui/material_ui.dart';
 
-enum MenuAction { viewProjects, addProject, logout }
+enum MenuAction { viewProjects, addProject, addExperience, logout }
 
 class ItemHomepage {
   final String name;
