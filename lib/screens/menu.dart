@@ -5,6 +5,7 @@ import '../widgets/info_card.dart';
 import '../widgets/project_card.dart';
 import '../models/item_homepage.dart';
 import 'project_form.dart';
+import 'experience_form.dart';
 
 class MyHomePage extends StatelessWidget {
   const MyHomePage({super.key});
@@ -27,6 +28,12 @@ class MyHomePage extends StatelessWidget {
       MenuAction.addProject,
     ),
     ItemHomepage('Logout', Icons.logout, Color(0xFFB91C1C), MenuAction.logout),
+    ItemHomepage(
+      'Tambah Pengalaman',
+      Icons.work_outline,
+      Colors.deepPurple,
+      MenuAction.addExperience,
+    ),
   ];
 
   @override
@@ -97,6 +104,12 @@ class MyHomePage extends StatelessWidget {
                             Navigator.of(context).push(
                               MaterialPageRoute<void>(
                                 builder: (_) => const ProjectFormPage(),
+                              ),
+                            );
+                          } else if (item.action == MenuAction.addExperience) {
+                            Navigator.of(context).push(
+                              MaterialPageRoute<void>(
+                                builder: (_) => const ExperienceFormPage(),
                               ),
                             );
                           }
